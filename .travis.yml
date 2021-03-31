@@ -1,0 +1,35 @@
+# trabajamos el lenguaje de javascript
+language: node_js
+cache: # información ya configurada para el proyecto
+  directories:
+    - node_modules
+    - ~/.npm
+
+node_js: #version
+  - '12'
+git: # número de versiones (git) a guardar
+  depth: 3 # Profundidad de la lectura del repositorio
+
+script: #script a ejecutar
+  - yarn test
+
+# manda emails a esos mails cuando es exitoso y cuando falla
+notifications:
+  slack: industriasgomez:GDjo3Fb2JKtnNDtZtg8V792K #Integración con notificaciones de Slack
+  email:
+    reciepients:
+    - eric.gomez.sanchez@gmail.com
+    - eric.gmz93@gmail.com
+    on_success: always
+    on_failure: always
+
+deploy:
+  provider: heroku # Selecionamos al proveedor que este caso es heroku
+  #github pages
+  # configuración del deploy:
+  skip_cleanup: true
+  keep_history: true
+  api_key: d59d9b76-cc33-4f22-ad8c-9113c8ea6223 # Key desde heroku
+  app: platzi-store-backend-2021
+  on:
+    repo: ericgomez/platzi-store-backend
